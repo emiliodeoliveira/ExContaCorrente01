@@ -5,7 +5,6 @@ import java.util.Random;
  *
  */
 
-
 public class CadastroDeContas {
 	static ContaCorrente[] vConta = new ContaCorrente[10];
 
@@ -24,6 +23,7 @@ public class CadastroDeContas {
 				break;
 			case '4':
 				listarContas();
+				break;
 			case '5':
 				maiorSaldo();
 				break;
@@ -104,20 +104,23 @@ public class CadastroDeContas {
 		ContaCorrente contaMaior = null;
 		double a = 0, maior = 0, indMaior = 0;
 		for (int i = 0; i < vConta.length; i++){
-			a = vConta[i].getSaldo();
-			if (a > maior) {
-				contaMaior = vConta[i];
+			if (vConta[i] != null) {
+				a = vConta[i].getSaldo();
+				if (a > maior) {
+					contaMaior = vConta[i];
+				}
 			}
 		}
-		System.out.println("A conta com maior salário é: \n"+contaMaior.saldo);
+		if (contaMaior != null)
+			System.out.println("A conta com maior salário é: \n"+contaMaior.saldo);
+		else System.out.println("Todas as contas estão sem saldo");
 	}
 
 	protected static int procuraConta(int nro){
 		for (int index = 0; index < vConta.length; index++)		{
 			if (vConta[index].getNumeroConta() == nro) {
 				return index;  
-			} 
-
+			}
 		}		
 		return -1 ;
 	}
